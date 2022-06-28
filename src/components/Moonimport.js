@@ -6,54 +6,56 @@ import "../index"
 
 
 function Moonphases () {
+    const [phases, setPhases] = useState(null);
     
-        const getLastSevenPhases = (async () => {
-            const moon = await axios.get(
-                "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Herndon,VA/last7days?unitGroup=us&key=PZ29AWQYWB27ZVT2XE8Z689AY&include=days&elements=datetime,moonphase,sunrise,sunset&contentType=csv")
-            .then ((response) => {
-                console.log(response)
-                // const allPhases = response.data
-                // setPhases(allPhases.data);
-            });
+    const api = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/washington%20DC?unitGroup=metric&elements=datetime%2CdatetimeEpoch%2Cmoonphase&include=days&key=PZ29AWQYWB27ZVT2XE8Z689AY&contentType=json"
+    
+    
+    // let sharePhases = null
+    useEffect(() => {
+        axios.get(api)
+        .then ((response) => {
+            console.log(response.data.days)
+            setPhases(response)
         });
+        
+    }, [api]);
 
-        return(
+   
+    // phases.map(item=>console.log(item.))
 
+
+    return(  
+
+        <div>
+             <h1>MOON PHASES</h1>
+            {/* <button onClick={dataMining}> GET LUNAR DATES </button> */}
             <div>
-                MOON PHASES <button onClick={getLastSevenPhases}> GET LUNAR TIME </button>
+                {/* <h1>{phases}</h1> */}
+                
             </div>
-        )
+        </div>
+    )
+};
+
+
+// const dataMining = (()=>{  
+//     phases.map(item => {
+//             return (
+//                <div key={item.days}>
+//                   {item.days.map(product => {
+//                       return (
+//                          <div key={product.datetime}>
+//                             <p>{product.moonphase}</p>
+//                          </div>
+//                       );
+//                   })}
+//                </div>
+//             )
+//     })
+// });
 
 
 
-}
-// function Moonphases () {
-//     const [moon, setPhases] = useState('');
-//     // useEffect to avoid continuous loop thru api
-
-//     useEffect(() => {
-//         const getLastSevenPhases = (async () => {
-//             const moon = await axios.get(
-//                 "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Herndon,VA/last7days?unitGroup=us&key=PZ29AWQYWB27ZVT2XE8Z689AY&include=days&elements=datetime,moonphase,sunrise,sunset&contentType=csv")
-//             .then ((response) => {
-//                 console.log(response)
-//                 const allPhases = response.data
-//                 // setPhases(allPhases.data);
-//             });
-            
-//         });
-//         // getLastSevenPhases();
-//         return(
-//             // <MoonPhaseDisplay moon={moon} />
-//             <div>
-//                 MOON PHASES <button onClick={getLastSevenPhases}> GET LUNAR TIME </button>
-//             </div>
-//         )
-        
-//         }, []);
-        
-
-
-// }
 
 export default Moonphases;
