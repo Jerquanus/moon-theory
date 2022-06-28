@@ -16,7 +16,7 @@ function Moonphases () {
         axios.get(api)
         .then ((response) => {
             console.log(response.data.days)
-            setPhases(response)
+            setPhases(response.data)
         });
         
     }, [api]);
@@ -26,30 +26,44 @@ function Moonphases () {
 
 
     return(  
-
         <div>
-             <h1>MOON PHASES</h1>
-            {/* <button onClick={dataMining}> GET LUNAR DATES </button> */}
-            <div>
-                {/* <h1>{phases}</h1> */}
-                
-            </div>
+            <h1>Pull MOON PHASES</h1> {
+             phases.map((moon) => (
+                <div key = {moon.days}>
+                    <p>{moon.days.moonphase}</p>
+                </div>
+                ))
+            }
+                      
+
         </div>
     )
 };
 
+// return (
+//     <div className = "App">
+//         <h1> Fetch data from an api in react </h1>  {
+//             items.map((item) => ( 
+//             <ol key = { item.id } >
+//                 User_Name: { item.username }, 
+//                 Full_Name: { item.name }, 
+//                 User_Email: { item.email } 
+//                 </ol>
+//             ))
+//         }
+//     </div>
 
 // const dataMining = (()=>{  
 //     phases.map(item => {
 //             return (
-//                <div key={item.days}>
-//                   {item.days.map(product => {
-//                       return (
-//                          <div key={product.datetime}>
-//                             <p>{product.moonphase}</p>
-//                          </div>
-//                       );
-//                   })}
+//                <div>
+                //   {days.map(product => {
+                //       return (
+                //          <div key={product.datetime}>
+                //             <p>{product.moonphase}</p>
+                //          </div>
+                //       );
+                //   })}
 //                </div>
 //             )
 //     })
