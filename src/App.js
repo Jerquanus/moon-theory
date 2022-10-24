@@ -1,7 +1,5 @@
 import backvid from './visual/background.mp4'
 import './App.css';
-import './components/MoonPhaseDisplay';
-// import MoonPhaseDisplay from './components/MoonPhaseDisplay';
 import Moonphases from './components/Moonimport';
 function App() {
   return (
@@ -19,7 +17,6 @@ function App() {
         <div className='leftBox'>
           <h2>PHASE</h2>
             <div className='moonData'>
-              {/* <MoonPhaseDisplay /> */}
               <Moonphases />
             </div>
         </div>
